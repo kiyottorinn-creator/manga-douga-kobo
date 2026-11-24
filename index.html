@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>漫画動画工房 — あらすじ1行から縦型の漫画動画が出るまでの見本</title>
+<meta name="description" content="絵が描けないまま、あらすじ1行から8コマの漫画動画（縦型・50秒）を作った見本。完成動画・コマ絵・失敗例・測った数字を全部置いています。">
+<style>
+:root{--ink:#14161a;--sub:#5b6472;--line:#e3e7ee;--bg:#f7f8fa;--accent:#2563eb;--warn:#b45309}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);line-height:1.8;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+header{background:#14161a;color:#fff;padding:44px 0 38px;margin-bottom:34px}
+header .wrap{padding-bottom:0}
+h1{font-size:26px;line-height:1.45;letter-spacing:.01em}
+header p{color:#b9c0cc;margin-top:12px;font-size:15px}
+h2{font-size:21px;margin:46px 0 14px;padding-bottom:9px;border-bottom:3px solid var(--ink)}
+h3{font-size:16px;margin:26px 0 8px;color:var(--accent)}
+p{margin:10px 0}
+.lede{font-size:17px;font-weight:700;background:#fff;border-left:6px solid var(--accent);padding:16px 18px;border-radius:0 10px 10px 0}
+.note{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:14px 16px;font-size:14px;color:#7c2d12;margin:16px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+video{width:100%;max-width:330px;display:block;margin:0 auto;border-radius:14px;background:#000;box-shadow:0 8px 28px rgba(20,22,26,.18)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.grid figure{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.grid img{width:100%;display:block}
+.grid figcaption{font-size:12.5px;color:var(--sub);padding:8px 10px;line-height:1.6}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:14px;margin:12px 0;display:block;overflow-x:auto;white-space:nowrap}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+th{background:#eef1f6;font-weight:700}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two img{width:100%;display:block;border-radius:10px;border:1px solid var(--line)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:#e8edf7;color:var(--accent);margin-right:6px}
+.bad{background:#fee2e2;color:#b91c1c}
+.good{background:#dcfce7;color:#166534}
+ul,ol{margin:10px 0 10px 22px}
+li{margin:5px 0}
+code{background:#eef1f6;padding:2px 7px;border-radius:5px;font-size:13px;font-family:ui-monospace,Menlo,monospace}
+pre{background:#14161a;color:#e8edf7;padding:14px 16px;border-radius:10px;overflow-x:auto;font-size:13px;line-height:1.7}
+footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--sub)}
+@media(max-width:560px){h1{font-size:21px}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>絵が描けないまま、漫画動画を1本作りました</h1>
+<p>あらすじ1行から、8コマ・3人・50.3秒の縦型動画まで。工程・失敗・測った数字を全部置いています。</p>
+</div></header>
+
+<div class="wrap">
+
+<p class="lede">まず、できたものを見てください。音が出ます。</p>
+<video controls preload="metadata" playsinline poster="img/panel_06.jpg"><source src="manga.mp4" type="video/mp4">お使いの環境では動画を再生できません。</video>
+<p style="text-align:center;font-size:13px;color:var(--sub);margin-top:10px">1080×1920 / 50.3秒 / 10.1MB / 8コマ / 15カット</p>
+
+<div class="note"><strong>先に断っておきます。</strong>物語・登場人物・作中の数字（412件・1260件）はすべて架空です。実在の会社・人物とは関係ありません。<br>
+この動画は<strong>YouTubeやTikTokに投稿していません</strong>。再生数・視聴維持率・収益は一切測っていません。このページで言えるのは「作れた」ことと「何分かかったか」だけです。</p>
+
+<h2>かかった時間（実測）</h2>
+<p>台本（<code>script.json</code>）を置いた状態から、<code>node make.js --最初から</code> を1回。出た数字がこれです。</p>
+<table>
+<tr><th>工程</th><th>やっていること</th><th>かかった時間</th></tr>
+<tr><td>コマ絵</td><td>8コマを画像生成で描く</td><td class="num">186.4秒</td></tr>
+<tr><td>吹き出し</td><td>セリフ・ナレーションをブラウザで重ねる（30枚）</td><td class="num">5.7秒</td></tr>
+<tr><td>声</td><td>セリフとナレーション15本を読み上げる</td><td class="num">11.0秒</td></tr>
+<tr><td>組み立て</td><td>寄り・BGM・音量をそろえて書き出す</td><td class="num">102.2秒</td></tr>
+<tr><th>合計</th><th>あらすじ側から動画まで</th><th class="num">305.3秒（5.1分）</th></tr>
+</table>
+<p>セリフだけ直したいときは <code>node 5_build.js --音だけ</code> で<strong>9.0秒</strong>。コマ絵を描き直さないぶん、言い回しの手直しが軽くなります。</p>
+
+<h2>登場人物は、先に「基準画」を1枚だけ作る</h2>
+<p>ここが崩れると全コマ崩れます。だから最初にこの3枚を作って、目で見てから先へ進みます。</p>
+<div class="grid">
+<figure><img src="img/yui.jpg" alt="佐々木ゆいの基準画"><figcaption>佐々木ゆい（新人）</figcaption></figure>
+<figure><img src="img/tamura.jpg" alt="田村先輩の基準画"><figcaption>田村先輩（残業を自慢する）</figcaption></figure>
+<figure><img src="img/mori.jpg" alt="森課長の基準画"><figcaption>森課長（数字を出す）</figcaption></figure>
+</div>
+
+<h2>顔をそろえるのに要った3つ（1つでも抜くと別人になる）</h2>
+<ol>
+<li><strong>基準画を参照として渡す</strong> — 顔と髪はこれでそろいます。ただし<strong>服はそろいません</strong></li>
+<li><strong>服装をコマごとに文章で書く</strong> — 参照画像は服を運んでくれないので、毎回書きます</li>
+<li><strong>寄り引きを指示文の先頭に置く</strong> — 後ろに書くと効きません</li>
+</ol>
+<div class="grid">
+<figure><img src="img/panel_01.jpg" alt="1コマ目"><figcaption>1コマ目：引き。2人を入れる</figcaption></figure>
+<figure><img src="img/panel_04.jpg" alt="4コマ目"><figcaption>4コマ目：もっと引き。周りは誰も見ていない</figcaption></figure>
+<figure><img src="img/panel_06.jpg" alt="6コマ目"><figcaption>6コマ目：顔だけの寄り。汗</figcaption></figure>
+<figure><img src="img/panel_08.jpg" alt="8コマ目"><figcaption>8コマ目：最後のコマ</figcaption></figure>
+</div>
+
+<h2>文字は、絵に描かせない</h2>
+<p>日本語を画像生成に描かせると崩れます。だから<strong>絵は絵、文字は文字</strong>で別に作って、あとから重ねます。
+こうすると、セリフを言い換えても絵を描き直さずに済みます。</p>
+<div class="two">
+<figure><img src="img/panel_03.jpg" alt="コマ絵だけ"><figcaption style="font-size:13px;color:var(--sub);padding-top:6px"><span class="tag">1</span>生成したコマ絵（文字なし）</figcaption></figure>
+<figure><img src="img/frame_balloon.jpg" alt="吹き出しを重ねたもの"><figcaption style="font-size:13px;color:var(--sub);padding-top:6px"><span class="tag good">2</span>吹き出しを重ねたもの</figcaption></figure>
+</div>
+
+<h2>うまくいかなかったこと</h2>
+<h3><span class="tag bad">失敗</span>後ろ姿のコマが壊れた</h3>
+<p>最後のコマを「出口へ歩いていく後ろ姿」にしようとしました。
+顔の参照画像を渡すと必ず顔がこちらを向くので、参照を外し、打ち消し語も足しました。それでも<strong>後頭部なのに体は正面を向いた絵</strong>になりました。</p>
+<div class="two" style="max-width:420px">
+<figure><img src="img/fail_back_view.jpg" alt="壊れた後ろ姿のコマ"><figcaption style="font-size:13px;color:var(--sub);padding-top:6px">後頭部＋正面の体。社員証が背中側に見えている</figcaption></figure>
+</div>
+<p>3回やり直してもそろわなかったので、<strong>絵を粘るのをやめて、台本の側を書き換えました</strong>。後ろ姿のコマをやめて、別の構図にしています。</p>
+
+<h3><span class="tag bad">失敗</span>8コマ全部が「正面向きのバストアップ」になった</h3>
+<p>登場人物の立ち絵を画風の参照としても渡していたせいでした。立ち絵の構図ごと全コマにコピーされていたのです。
+画風の参照をやめて、寄り引きを文の先頭に置き、打ち消し語に「正面のバストアップ」を足したら、引きも寄りも肩越しも出るようになりました。</p>
+
+<h3><span class="tag bad">失敗</span>ゆっくり寄せたら、ナレーションの帯が画面の外へ消えた</h3>
+<p>絵と文字を1枚に焼いてから拡大していたからです。文字を透明の別レイヤーにして、<strong>絵だけを寄せて、文字は動かさない</strong>ようにしました。</p>
+
+<h2>声とBGM（どちらも課金なし）</h2>
+<p>声はMacに最初から入っている読み上げ機能です。日本語の声が<strong>9種類</strong>あるので、登場人物ごとに変えられます。</p>
+<p>数字の読みは心配でしたが、測ったら大丈夫でした。同じ声・同じ速さで読ませて長さを比べています。</p>
+<table>
+<tr><th>読ませた文字</th><th>長さ</th><th>判定</th></tr>
+<tr><td>1260件</td><td class="num">1.902667秒</td><td rowspan="2">完全に同じ長さ＝漢数字と同じ読み方</td></tr>
+<tr><td>千二百六十件</td><td class="num">1.902667秒</td></tr>
+<tr><td>いちにいろくぜろけん</td><td class="num">2.142500秒</td><td>ばらばら読みなら、この長さになるはず</td></tr>
+</table>
+<p>BGMもffmpegで自分で作りました（4つの和音を32秒で回すだけ）。配布元の決まりを確認しなくていいのが楽です。
+喋っている間はBGMが自動で下がります。BGMだけを取り出して測ると<strong>15.3dB</strong>下がっていました（無音の間 -36.5dB → 喋っている間 -51.8dB）。</p>
+
+<h2>この見本でやっていないこと</h2>
+<ul>
+<li>YouTube・TikTokに投稿していません。再生数も収益も測っていません</li>
+<li>漫画動画の制作を受注した実績はありません</li>
+<li>Windows・Linuxでは動かしていません（声の部分がmacOS頼みです）</li>
+<li>画像生成の1枚あたりの料金は請求画面で確認していません</li>
+<li>作ったのは1本だけです。何本も続けて作ったときに顔がどれだけブレるかは測っていません</li>
+<li>声は機械の読み上げで、人間の声優とは明らかに違います</li>
+</ul>
+
+<footer>
+このページの入力はどこにも送っていません（動画と画像を置いてあるだけの静的なページです）。<br>
+物語・登場人物・作中の数字はすべて架空です。
+</footer>
+</div>
+</body>
+</html>
